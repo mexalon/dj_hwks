@@ -9,7 +9,14 @@
     <div class="section">
 
       <h3>Спасибо, что посетили наш сайт!</h3>
+        <br>
+        <h3>Выберите раздел</h3>
+    {% for title, url in pages.items %}
+        <a href="{{ url }}">{{ title }}</a>
+        <br>
+    {% endfor %}
 
     </div>
   </div>
+
 {% endblock %}
