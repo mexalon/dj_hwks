@@ -10,7 +10,7 @@ def inflation_view(request):
         reader = csv.DictReader(csvf, delimiter=';')
         DATA = [row for row in reader]
         header_ = list(DATA[0].keys())
-        # тут надо обработку стринга
+        # тут надо обработку стринга !!!!!!!!!
         body_ = [[int(list(row.values())[0])] + [float(item) for item in list(row.values())[1:]] for row in DATA[1:]]
         print(body_)
 
