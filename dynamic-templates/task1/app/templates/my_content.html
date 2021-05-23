@@ -1,0 +1,26 @@
+{%  extends "inflation.html" %}
+
+{% block data %}
+<table>
+    <tr>
+    {% for row in data|slice:"1" %}
+    <tr>
+        {% for item in row %}
+        <th style="background-color: {{item.color}}">{{ item.value }}</th>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tr>
+    {% for row in data|slice:"1:" %}
+    <tr>
+        {% for item in row %}
+        <td style="background-color: {{item.color}}">{{ item.value|default:"-" }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock data %}
+
