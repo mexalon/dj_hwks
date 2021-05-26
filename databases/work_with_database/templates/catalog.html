@@ -9,11 +9,22 @@
         </div>
 
         <div class="sort-block">
-            {# Здесь должен быть раздел с сортировкой #}
+            <a>Сортировать по:</a>
+            <a href="/catalog?sort=name"> имени,</a>
+            <a href="/catalog?sort=min_price"> возрастание цены, </a>
+            <a href="/catalog?sort=max_price"> убыванию цены, </a>
+
         </div>
 
         <div class="content">
             {# Здесь должен отображаться каталог с телефонами #}
+            {% for item in items %}
+            <h3> <a href="/catalog/{{ item.slug }}"> {{item.name}}</a></h3>
+
+            <p>Стоимость: {{item.price}} </p>
+            <a href="/catalog/{{ item.slug }}"><img src={{ item.image}} height = '256' alt=""></a>
+            <p></p>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

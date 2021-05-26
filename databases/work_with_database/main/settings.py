@@ -51,7 +51,9 @@ MIDDLEWARE = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_import_phones',
+        'NAME': 'phone_db',
+        'USER': 'phone_db',
+        'PASSWORD': 'phone_db',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -121,3 +123,6 @@ try:
     from .settings_local import *
 except ImportError:
     pass
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV_PATH = os.path.join(BASE_DIR, 'phones.csv')
