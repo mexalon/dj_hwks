@@ -28,7 +28,7 @@ def inflation_view(request):
         reader = csv.reader(csvf, delimiter=';')
         data = [row for row in reader]
 
-    body_ = []
+    body_ = []  # добавление полей цвета и раскраска
     for row in data:
         dataline = [{'value': item, 'color': None} for item in row]
         body_ += [dataline]
@@ -39,6 +39,5 @@ def inflation_view(request):
             item['color'] = color_it(item['value'])
 
     c = {'data': body_}
-    print(c)
 
     return render(request, template_name, context=c)
