@@ -1,7 +1,7 @@
 from django.views.generic import ListView
 from django.shortcuts import render
 
-from articles.models import Article, Scope, Scope_Article
+from .models import Article, Scope, Scope_Article
 
 
 def articles_list(request):
@@ -10,8 +10,10 @@ def articles_list(request):
     a = Article.objects.all().order_by(ordering).prefetch_related('scopes')
     context = {'object_list': a}
 
-    for aa in a:
-        print(aa.scopes.all())
+    a = Article.objects.first()
+    s = Scope.objects.first()
+    iii = Scope_Article.objects.get(article=a, scope=s).is_main
+    print(iii)
 
     # используйте этот параметр для упорядочивания результатов
     # https://docs.djangoproject.com/en/2.2/ref/models/querysets/#django.db.models.query.QuerySet.order_by
