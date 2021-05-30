@@ -1,18 +1,18 @@
 from django.contrib import admin
 
-from .models import Article, Scope, Scope_Article
+from .models import Article, Scopes, Topic
 
 
-class Scope_ArticleInline(admin.TabularInline):
-    model = Scope_Article
+class ScopesInline(admin.TabularInline):
+    model = Scopes
     extra = 1
 
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    inlines = (Scope_ArticleInline, )
+    inlines = (ScopesInline, )
 
 
-@admin.register(Scope)
+@admin.register(Topic)
 class ScopeAdmin(admin.ModelAdmin):
-    inlines = (Scope_ArticleInline, )
+    inlines = (ScopesInline, )
