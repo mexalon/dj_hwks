@@ -7,7 +7,7 @@ from .models import Article, Topic, Scopes
 def articles_list(request):
     template = 'articles/news.html'
     ordering = '-published_at'
-    a = Article.objects.all().order_by(ordering).prefetch_related('scopes')
+    a = Article.objects.all().order_by(ordering).prefetch_related('topics').prefetch_related('scopes')
     context = {'object_list': a}
 
     return render(request, template, context)
