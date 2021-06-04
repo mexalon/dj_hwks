@@ -18,14 +18,11 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from measurements import views
 
-project_router = DefaultRouter()
-project_router.register('projects', views.ProjectViewSet, basename='project')
-
-measurement_router = DefaultRouter()
-measurement_router.register('measurement', views.MeasurementViewSet, basename='measurement')
+router = DefaultRouter()
+router.register('projects', views.ProjectViewSet, basename='project')
+router.register('measurement', views.MeasurementViewSet, basename='measurement')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include(project_router.urls)),
-    path('api/v1/', include(measurement_router.urls)),
-]
+    path('api/v1/', include(router.urls)),
+    ]
