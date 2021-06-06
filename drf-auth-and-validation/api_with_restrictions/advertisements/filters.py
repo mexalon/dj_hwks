@@ -1,3 +1,4 @@
+from django.conf import settings
 from django_filters import rest_framework as filters
 
 from .models import Advertisement, AdvertisementStatusChoices
@@ -10,4 +11,4 @@ class AdvertisementFilter(filters.FilterSet):
 
     class Meta:
         model = Advertisement
-        fields = ['status', 'created_at', ]
+        fields = ['status', 'created_at', 'creator',]
