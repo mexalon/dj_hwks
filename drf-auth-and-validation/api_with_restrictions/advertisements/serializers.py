@@ -23,7 +23,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
         fields = ('id', 'title', 'description', 'creator',
-                  'status', 'created_at', )
+                  'status', 'created_at',)
 
     def create(self, validated_data):
         """Метод для создания"""
@@ -39,7 +39,10 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """Метод для валидации. Вызывается при создании и обновлении."""
-
-        # TODO: добавьте требуемую валидацию
+        user = self.context["request"].user
+        adv_open = Advertisement.objects.filter(creator=user).filter(status="OPEN").count()
+        print(adv_open)
+        if data.get('status') == 'OPEN' and adv_open >= 10:
+            raise serializers.ValidationError(f"{user} уже создал {adv_open} открытых обьявлений")
 
         return data
