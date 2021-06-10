@@ -80,7 +80,9 @@ WSGI_APPLICATION = 'django_testing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_django_testing',
+        'NAME': 'dj_hw_tests',
+        'USER': 'dj_hw_tests',
+        'PASSWORD': 'dj_hw_tests',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
