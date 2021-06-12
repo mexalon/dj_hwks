@@ -19,5 +19,5 @@ def course_factory():
 @pytest.fixture
 def student_factory():
     def factory(**kwargs):
-        return baker.make('Students', **kwargs)
+        return baker.make('Student', **kwargs)
     return factory

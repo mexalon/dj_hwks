@@ -4,6 +4,7 @@ from rest_framework import serializers
 from .models import Advertisement
 
 
+
 class UserSerializer(serializers.ModelSerializer):
     """Serializer для пользователя."""
 

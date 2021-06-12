@@ -1,7 +1,7 @@
 import pytest
 import random
 from django.urls import reverse
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.django_db
@@ -86,3 +86,20 @@ def test_course_delete(my_api_client, course_factory):
     url = reverse("courses-list")
     resp = my_api_client.delete(url + f"{its_id}/")
     assert resp.status_code == HTTP_204_NO_CONTENT
+
+
+@pytest.mark.parametrize(["stud", "exp_status"],
+                         (
+                                 (1, HTTP_201_CREATED),
+                                 (3, HTTP_400_BAD_REQUEST)
+                         )
+                         )
+@pytest.mark.django_db
+def test_students_per_course(my_api_client, course_factory,  student_factory, settings, stud, exp_status):
+    settings.MAX_STUDENTS_PER_COURSE = 2
+    ids = [item.id for item in student_factory(_quantity=stud)]
+    course_payload = {"name": "test", "students": ids}
+    url = reverse("courses-list")
+    resp = my_api_client.post(url, course_payload)
+    assert resp.status_code == exp_status
+
